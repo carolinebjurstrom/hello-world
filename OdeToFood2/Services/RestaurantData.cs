@@ -11,6 +11,7 @@ namespace OdeToFood2.Services
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAll();
+        Restaurant Get(int id);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -24,6 +25,11 @@ namespace OdeToFood2.Services
                 new Restaurant { Id = 2, Name = "LJ's and the Kat"},
                 new Restaurant { Id = 3, Name = "Kings Contrivance"}
             };
+        }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(r => r.Id == id);
         }
         public IEnumerable<Restaurant> GetAll()
         {
