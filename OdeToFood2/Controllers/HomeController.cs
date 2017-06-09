@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OdeToFood2.Models;
+using OdeToFood2.ViewModels;
 using OdeToFood2.Services;
 
 namespace OdeToFood2.Controllers
@@ -7,14 +7,20 @@ namespace OdeToFood2.Controllers
     public class HomeController : Controller
     {
         private IRestaurantData _restaurantData;
-        public HomeController(IRestaurantData restaurantData)
+        private IGreeter _greeter;
+
+        public HomeController(IRestaurantData restaurantData,
+            IGreeter greeter)
         {
             _restaurantData = restaurantData;
+            _greeter = greeter;
         }
 
         public ViewResult Index()
         {
-            var model = _restaurantData.GetAll();
+            var model = new HomePageViewModel();
+            model.Restaurants = _restaurantData.GetAll();
+            model.CurrentGreeting = _greeter.GetGreeting();
                 
 
             return View(model);

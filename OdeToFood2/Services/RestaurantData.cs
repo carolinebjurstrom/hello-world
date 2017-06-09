@@ -1,4 +1,5 @@
-﻿using OdeToFood2.Models;
+﻿using OdeToFood2.ViewModels;
+using OdeToFood2.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
